@@ -2,6 +2,7 @@ package com.example.memoapi.cotroller;
 
 import com.example.memoapi.dto.Note;
 import com.example.memoapi.service.NoteService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +52,19 @@ public class NoteController {
         return ResponseEntity.ok(note);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        noteService.delete(id);
 
+        return ResponseEntity.noContent().build();
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Note> update(@PathVariable long id,
+                                       @RequestBody Note note) {
+        noteService.update(note, id);
+
+        return ResponseEntity.ok(note);
+    }
 
 }
