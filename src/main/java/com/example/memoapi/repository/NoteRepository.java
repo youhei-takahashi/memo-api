@@ -17,4 +17,12 @@ public class NoteRepository {
     public List<Note> findAll() {
         return noteMapper.findAll();
     }
+
+    public int insertNote(Note note) {
+        return noteMapper.insert(note);
+    }
+
+    public Note findById(long id) {
+        return noteMapper.findById(id);
+    }
 }
